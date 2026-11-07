@@ -1,0 +1,6 @@
+# GitHub Pages builds this site with Jekyll. The landing page (index.html)
+# lists the projects in _data/projects.yml, grouped by topic.
+title: Ian Cavén
+description: Projects by Ian Cavén, grouped by topic.
+exclude:
+  - README.md

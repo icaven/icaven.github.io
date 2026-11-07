@@ -1,0 +1,15 @@
+# Topics, each with its projects. To add a project, add an entry under its
+# topic (or add a new topic). Dates are ISO (YYYY-MM-DD). A project's url is
+# its own GitHub Pages site, /<repo>/, or any other address.
+
+- topic: Geometric algebra
+  blurb: Constructions and visualizations with conformal geometric algebra.
+  projects:
+    - title: Compass constructions in conformal geometric algebra
+      url: /cga-constructions/
+      repo: https://github.com/icaven/cga-constructions
+      date: 2026-11-07
+      summary: >-
+        How joins, meets and spheres in conformal geometric algebra construct regular
+        polygons and the Platonic solids, with live ganja.js demos and the
+        constructibility theory behind them.

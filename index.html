@@ -1,0 +1,72 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ site.title }}</title>
+<meta name="description" content="{{ site.description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+  /* One column of topics, each a short list of projects. */
+  :root {
+    --paper: #f6f7f9; --ink: #17202e; --muted: #586374; --rule: #d8dde5; --accent: #2462b8;
+    --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+    --body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #12161d; --ink: #e4e8ee; --muted: #9aa5b5; --rule: #2c3442; --accent: #7fb0f0; color-scheme: dark; }
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 1.0625rem/1.6 var(--body);
+    padding: 3rem max(16px, env(safe-area-inset-right, 0px)) 4rem max(16px, env(safe-area-inset-left, 0px));
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.2; }
+  h1 { font-size: 2.2rem; margin: 0 0 0.3rem; }
+  .lede { color: var(--muted); margin: 0 0 2.5rem; }
+  section { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 2rem; }
+  h2 { font-size: 1.4rem; margin: 0 0 0.2rem; }
+  .blurb { color: var(--muted); margin: 0 0 1rem; }
+  ul.projects { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.2rem; }
+  h3 { font-size: 1.15rem; margin: 0; }
+  h3 a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
+  .meta { font-family: var(--display); font-size: 0.9rem; color: var(--muted); }
+  .meta a { color: var(--accent); }
+  .summary { margin: 0.3rem 0 0; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>{{ site.title }}</h1>
+  <p class="lede">{{ site.description }}</p>
+
+  {% for t in site.data.projects %}
+  <section id="{{ t.topic | slugify }}">
+    <h2>{{ t.topic }}</h2>
+    {% if t.blurb %}<p class="blurb">{{ t.blurb }}</p>{% endif %}
+    <ul class="projects">
+      {% for p in t.projects %}
+      <li>
+        <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+        <div class="meta">
+          {% if p.date %}<time datetime="{{ p.date | date: '%Y-%m-%d' }}">{{ p.date | date: '%Y-%m-%d' }}</time>{% endif %}
+          {% if p.repo %} · <a href="{{ p.repo }}">source</a>{% endif %}
+        </div>
+        {% if p.summary %}<p class="summary">{{ p.summary }}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+</main>
+</body>
+</html>
